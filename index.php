@@ -4,8 +4,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 require '../vendor/autoload.php';
 
-$app = new \Slim\App;
-
 
 function connect()
 {
@@ -20,7 +18,8 @@ function connect()
 
 
 function createDatabaseTable()
-{   $db = connect();
+{
+    $db = connect();
     $db->exec('DROP TABLE `utilizatori`');
     $db->exec("CREATE TABLE `utilizatori` (id_utilizator INT(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY, nume_utilizator VARCHAR(10) NOT NULL, parola INT(6) NOT NULL, email VARCHAR(20))");
 }
@@ -29,28 +28,34 @@ function createDatabaseTable()
 function createPlotEntry()
 {
     $db = connect();
-    $queryString = 'INSERT INTO `utilizatori` (`id`) VALUES ("' . tempnam("user_name", "OUT") . '")';
+    $queryString = 'INSERT INTO `utilizatori` (`id_utilizator`) VALUES ("' . tempnam("user_name", "OUT") . '")';
     $db->query($queryString);
-    return $db->lastInsertRowId();
+    return $db->lastInsertId();
 }
 
 function getPlotFunction($db, $id)
 {
-    $res = $db->query('SELECT * FROM `utilizatori` WHERE `id`=' . $id);
-    $row = $res->fetchArray();
-    return $row['user_name'];
-}
+    $res = $db->query('SELECT * FROM `utilizatori` WHERE `id_utilizator`=1');
 
+    $row = $res->fetchArray();
+    return $row['nume_utilizator'];
+}
+$settings =  [
+    'settings' => [
+        'displayErrorDetails' => true,
+    ],
+];
+$app = new Slim\App($settings);
 $app->post('/plot/{id}', function (Request $request, Response $response) {
     $db = connect();
-    $id = $request->getAttribute('id');
+    $id = $request->getAttribute('id_utilizator');
     $rsp = createPlotEntry($db, $id);
-    return $response->withJSON(array("response" => "should return a neutral object, maybe based on plot ID..."));
+    return $response->withJSON(array("response" => $rsp));
 });
 
 $app->get('/plot/{id}', function (Request $request, Response $response) {
     $db = connect();
-    $id = $request->getAttribute('id');
+    $id = $request->getAttribute('id_utilizator');
     $rsp = getPlotFunction($db, $id);
     return $response->withJSON(array("response" => $rsp));
 });
