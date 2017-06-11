@@ -36,6 +36,12 @@ html {
     color: #D3D3D3;
     padding: 15px;
 }
+.container{
+
+    background-color: #000000;
+    color: #D3D3D3;
+    padding: 15px;
+}
 .header a {
 	padding: 8px;
     margin-bottom: 7px;
@@ -67,23 +73,38 @@ html {
 <div class="col-11 header">
   <h1>Lista Evenimente</h1>
 </div>
+
 <div class="col-1 header">
   <a href="Administrare.html"><img border="0" src="logo.jpg" width="90" height="76"></a>
 </div>
 
-<div class="row">
-
-<div class="col-3 menu">
+<div class="col-4 container">
+  <div class="col-8 menu">
   <ul >
-    <li><a href="" > Lista Evenimente </a></li>
-	<li><a href="" ></a></li>
-    <li><a href="" >Conturi Administator</a></li>
-    <li><a href="" >Contact</a></li>
-    
+    <li><a href="" > Nume Eveniment: </a></li>
+	<li><a href="" >Data Eveniment:<p>
+	<li><a href="" >Categorie Eveniment:
+	</a></li>
+    <li><a href="" >Autor:</a></li>
   </ul>
+  </div>
+  <div class="col-4 menu">
+  <ul >
+    <li><a href="" > Sterge Eveniment</a></li>
+	<li><a href="" >Modifica Eveniment</a></li>
+    <li><a href="" >Profil Autor</a></li>
+  </ul>
+  </div>
 </div>
 
-<div class="col-9">
+
+
+
+<div class="col-3 menu">
+  
+</div>
+
+<div class="col-1">
   <form action="/action_page.php">
   Introduce-ti ecuatia<br>
   <input type="text" name="ecuatie" value ="x+y"><br>
