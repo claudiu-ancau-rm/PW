@@ -135,9 +135,17 @@ fieldset {
 </div>
 
 <div class="col-9">
-    <h1>Login</h1>
+    <h1>Register</h1>
     <form class="form">
       <fieldset class="account-info">
+        <label>
+          Nume si prenume
+          <input class="input" type="text" name="nume">
+        </label>
+        <label>
+          E-mail
+          <input class="input" type="email" name="email">
+        </label>
         <label>
           Username
           <input class="input" type="text" name="username">
@@ -146,9 +154,13 @@ fieldset {
           Password
           <input class="input" type="password" name="password">
         </label>
+        <label>
+          Confirm password
+          <input class="input" type="password" name="confirmedpassword">
+        </label>
       </fieldset>
       <fieldset class="account-action">
-        <input class="btn" type="submit" name="submit" value="Login">
+        <input class="btn" type="submit" name="submit" value="Register">
       </fieldset>
     </form>
   
