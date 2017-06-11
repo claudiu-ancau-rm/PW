@@ -25,19 +25,19 @@ function createDatabaseTable()
 }
 
 
-function createPlotEntry()
+function createPlotEntry($db,$nume,$parola,$email)
 {
-    $db = connect();
-    $queryString = 'INSERT INTO `utilizatori` (`id_utilizator`) VALUES ("' . tempnam("user_name", "OUT") . '")';
+    $queryString = 'INSERT INTO `utilizatori` (nume_utilizator,parola,email) VALUES ("' .$nume. '","' .$parola. '","' .$email. '")';
     $db->query($queryString);
     return $db->lastInsertId();
 }
 
 function getPlotFunction($db, $id)
 {
-    $res = $db->query('SELECT * FROM `utilizatori` WHERE `id_utilizator`=1');
-
-    $row = $res->fetchArray();
+    
+    $res = $db->query('SELECT id_utilizator FROM utilizatori WHERE id_utilizator=1');
+    $row=mysqli_fetch_array($res,MYSQLI_NUM);
+    echo "a".$row['id_utilizator']."a";
     return $row['nume_utilizator'];
 }
 $settings =  [
@@ -46,14 +46,16 @@ $settings =  [
     ],
 ];
 $app = new Slim\App($settings);
-$app->post('/plot/{id}', function (Request $request, Response $response) {
+$app->post('/adauga/{nume_utilizator},{parola},{email}', function (Request $request, Response $response) {
     $db = connect();
-    $id = $request->getAttribute('id_utilizator');
-    $rsp = createPlotEntry($db, $id);
-    return $response->withJSON(array("response" => $rsp));
+    $nume = $request->getAttribute('nume_utilizator');
+    $parola = $request->getAttribute('parola');
+    $email = $request->getAttribute('email');
+    createPlotEntry($db, $nume,$parola,$email);
+    return $response->withJSON(array("mesaj" => "Succes!"));
 });
 
-$app->get('/plot/{id}', function (Request $request, Response $response) {
+$app->get('/plot/{id_utilizator}', function (Request $request, Response $response) {
     $db = connect();
     $id = $request->getAttribute('id_utilizator');
     $rsp = getPlotFunction($db, $id);
