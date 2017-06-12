@@ -31,7 +31,7 @@ html {
     font-family: "Lucida Sans", sans-serif;
 }
 .header{
-    background-color: #330000;;
+    background-color: #4B0082;
     color: #D3D3D3;
     padding: 15px;
 }
@@ -58,10 +58,10 @@ html {
 
 .form {
   border: 1px solid #c6c7cc;
-  border-radius: 20px;
+  border-radius: 5px;
   font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow: hidden;
-  width: 300px;
+  width: 240px;
 }
 fieldset {
   border: 0;
@@ -111,58 +111,61 @@ fieldset {
   float: left;
   margin: 10px 0 0 20px;
 }
-.invizibil {
-
-}
-
 </style>
 </head>
-<body background="b.jpg">
+<body>
 
-<div class="col-10 header">
-  <h1>Date Contact</h1>
+<div class="col-11 header">
+  <h1>Evenimente Muzicale din Timisoara</h1>
 </div>
 
 <div class="col-1 header">
-  <a href="Administrare.html"><img border="0" src="logo2.jpg" width="90" height="76"></a>
+  <a href="home.html"><img border="0" src="homebutton.jpg" width="90" height="76"></a>
 </div>
-<div class="col-1 header">
-  <a href="loginAdministrare.html"><img border="0" src="logout.png" width="90" height="76"></a>
-</div>
+
 <div class="row">
 
-
-<div class="col-5">
+<div class="col-3 menu">
+  <ul >
+    <li>Register</li>
+    <li>Cauta eveniment</li>
+    <li>Sorteaza</li>
+    <li>Contact</li>
+  </ul>
 </div>
-<div class="col-4">
-    <h1>Modifica Date Contact</h1>
+
+<div class="col-9">
+    <h1>Register</h1>
     <form class="form">
       <fieldset class="account-info">
         <label>
-          Nume Firma:
-		<input class="input" type="text" name="firma">
-		 </label>
+          Nume si prenume
+          <input class="input" type="text" name="nume">
+        </label>
         <label>
-          Telefon:
-		<input class="input" type="text" name="telefon">
-		</label>
-		<label>
-		
-          Email:
-		<input class="input" type="text" name="email">
-		 </label>
-		<label>
-         Adresa:
-		<input class="input" type="text" name="adresa">
-		 </label>
+          E-mail
+          <input class="input" type="email" name="email">
+        </label>
+        <label>
+          Username
+          <input class="input" type="text" name="username">
+        </label>
+        <label>
+          Password
+          <input class="input" type="password" name="password">
+        </label>
+        <label>
+          Confirm password
+          <input class="input" type="password" name="confirmedpassword">
+        </label>
       </fieldset>
       <fieldset class="account-action">
-        <input class="btn" type="submit" name="submit" value="Modifica">
+        <input class="btn" type="submit" name="submit" value="Register">
       </fieldset>
     </form>
   
-
 </div>
+
 </div>
 
 </body>
