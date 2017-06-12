@@ -61,8 +61,8 @@ html {
     background-color: #33b5e5;
 }
 .form {
-  border: 1px solid #c6c7cc;
-  border-radius: 5px;
+  border: 1px solid #000000;
+  border-radius: 20px;
   font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow: hidden;
   width: 240px;
@@ -96,7 +96,7 @@ fieldset {
   width: 100%;
 }
 .account-action {
-  background: #f0f0f2;
+  background: #000000;
   border-top: 1px solid #c6c7cc;
   padding: 20px;
 }
@@ -108,6 +108,7 @@ fieldset {
   font-weight: bold;
   float: left;
   padding: 8px 16px;
+  border-radius: 15px;
 }
 .account-action label {
   color: #7c7c80;
@@ -137,16 +138,12 @@ fieldset {
     <form class="form">
       <fieldset class="account-info">
         <label>
-          Nume si prenume
-          <input class="input" type="text" name="nume">
+          Username
+          <input class="input" type="text" name="username">
         </label>
         <label>
           E-mail
           <input class="input" type="email" name="email">
-        </label>
-        <label>
-          Username
-          <input class="input" type="text" name="username">
         </label>
         <label>
           Password
