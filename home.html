@@ -15,9 +15,9 @@
     float: left;
     padding: 15px;
 }
-.col-1 {width: 8.33%;}
+.col-1 {width: 15%;}
 .col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
+.col-3 {width: 18%;}
 .col-4 {width: 33.33%;}
 .col-5 {width: 41.66%;}
 .col-6 {width: 50%;}
@@ -25,13 +25,28 @@
 .col-8 {width: 66.66%;}
 .col-9 {width: 75%;}
 .col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
+.col-11 {width: 85%;}
 .col-12 {width: 100%;}
 html {
     font-family: "Lucida Sans", sans-serif;
+    background: url(background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .header{
     background-color: #4B0082;
+    color: #D3D3D3;
+    padding: 15px;
+}
+.invizibil{
+    padding: 15px;
+}
+.container{
+    border: 1px solid #c6c7cc;
+    border-radius: 20px;
+    background-color:#D3D3D3;
     color: #D3D3D3;
     padding: 15px;
 }
@@ -52,34 +67,135 @@ html {
 	color: #ffffff;
     text-decoration: none;
 }
-.menu li:hover {
+.hover:hover {
     background-color: #33b5e5;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.input {
+  border-radius: 5px;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+.account-info {
+  padding: 3px 10px 0 5px;
+}
+.account-info input {
+  background: #fff;
+  border: 1px solid #c6c7cc;
+   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+  color: #636466;
+  padding: 6px;
+  margin-top: 6px;
+  width: 100%;
+}
+.account-action {
+  background: #f0f0f2;
+  border-top: 1px solid #c6c7cc;
+  padding: 20px;
+}
+.account-action .btn {
+  background: linear-gradient(#49708f, #293f50);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  float: left;
+  padding: 8px 16px;
 }
 </style>
 </head>
 <body>
 
-<div class="header">
+<div class="col-11 header">
   <h1>Evenimente Muzicale din Timisoara</h1>
+</div>
+
+<div class="col-1 header">
+  <form>
+        <fieldset class="account-info">
+          <input class="input" type="text" name="eveniment">
+        </fieldset>
+        <fieldset class="account-info">
+        <input class="btn" type="submit" name="submit" value="Cauta">
+        </fieldset>
+    </form>
 </div>
 
 <div class="row">
 
 <div class="col-3 menu">
   <ul >
-    <li>
-    <a href="login.html" > Login </a></li>
-    <li> <a href="register.html" > Register </a></li>
-    <li>Cauta eveniment</li>
-    <li>Sorteaza</li>
-    <li>Contact</li>
+    <li class="hover"> <a href="login.html" > Login </a></li>
+    <li class="hover"> <a href="register.html" > Register </a></li>
+    <li class="hover">Cauta eveniment</li>
+    <li class="hover">Sorteaza</li>
+    <li class="hover">Contact</li>
   </ul>
 </div>
 
 <div class="col-9">
-  <h1>Evenimente</h1>
-  <p></p>
-  <p><img src="image8.jpg"></p>
+  <p>
+    <div class="col-4 invizivil">
+    <div class="col-12 container">
+      <div class="col-8 menu">
+      <ul >
+        <li><a href="" > Nume Eveniment: </a></li>
+        <li><a href="" >Data Eveniment:<p>
+        <li><a href="" >Categorie Eveniment:
+        </a></li>
+        <li><a href="" >Autor:</a></li>
+      </ul>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-4 invizivil">
+    <div class="col-12 container">
+      <div class="col-8 menu">
+      <ul >
+        <li><a href="" > Nume Eveniment: </a></li>
+        <li><a href="" >Data Eveniment:<p>
+        <li><a href="" >Categorie Eveniment:
+        </a></li>
+        <li><a href="" >Autor:</a></li>
+      </ul>
+      </div>
+    </div>
+    </div>
+  </p>
+  <p>
+    <div class="col-4 invizivil">
+    <div class="col-12 container">
+      <div class="col-8 menu">
+      <ul >
+        <li><a href="" > Nume Eveniment: </a></li>
+        <li><a href="" >Data Eveniment:<p>
+        <li><a href="" >Categorie Eveniment:
+        </a></li>
+        <li><a href="" >Autor:</a></li>
+      </ul>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-4 invizivil">
+    <div class="col-12 container">
+      <div class="col-8 menu">
+      <ul >
+        <li><a href="" > Nume Eveniment: </a></li>
+        <li><a href="" >Data Eveniment:<p>
+        <li><a href="" >Categorie Eveniment:
+        </a></li>
+        <li><a href="" >Autor:</a></li>
+      </ul>
+      </div>
+    </div>
+    </div>
+  </p>
   
 </div>
 
