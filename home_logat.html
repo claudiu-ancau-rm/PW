@@ -107,6 +107,12 @@ fieldset {
   padding: 8px 16px;
   border-radius: 10px;
 }
+.select {
+  background: #4B0082;
+  color: #D3D3D3;
+  border-top: 1px solid #D3D3D3;
+  padding: 8px;
+}
 </style>
 </head>
 <body>
@@ -133,7 +139,15 @@ fieldset {
     <li class="hover"> <a href="home.html" > Logout </a></li>
     <li class="hover">Profil</li>
     <li class="hover"> <a href="evenimentele_mele.html" > Evenimentele mele </a></li>
-    <li class="hover">Categorii</li>
+    <li class="hover"> Categorie: 
+    <select name="categorie" class="select">
+        <option value="toate" selected>Toate</option>
+        <option value="opera">Opera</option>
+        <option value="concert">Concert</option>
+        <option value="festival">Festival</option>
+        <option value="party">Party</option>
+      </select>
+    </li>
     <li class="hover">Creaza eveniment</li>
     <li class="hover">Contact</li>
   </ul>
@@ -149,7 +163,7 @@ fieldset {
         <li><a href="" >Data Eveniment:<p>
         <li><a href="" >Categorie Eveniment:
         </a></li>
-        <li><a href="" >Organizator:</a></li>
+        <li class="hover"><a href="" >Detalii</a></li>
       </ul>
       </div>
       </div>
@@ -163,7 +177,7 @@ fieldset {
         <li><a href="" >Data Eveniment:<p>
         <li><a href="" >Categorie Eveniment:
         </a></li>
-        <li><a href="" >Autor:</a></li>
+        <li class="hover"><a href="" >Detalii</a></li>
       </ul>
       </div>
     </div>
@@ -178,7 +192,7 @@ fieldset {
         <li><a href="" >Data Eveniment:<p>
         <li><a href="" >Categorie Eveniment:
         </a></li>
-        <li><a href="" >Autor:</a></li>
+        <li class="hover"><a href="" >Detalii</a></li>
       </ul>
       </div>
       </div>
@@ -192,7 +206,7 @@ fieldset {
         <li><a href="" >Data Eveniment:<p>
         <li><a href="" >Categorie Eveniment:
         </a></li>
-        <li><a href="" >Autor:</a></li>
+        <li class="hover"><a href="" >Detalii</a></li>
       </ul>
       </div>
     </div>
