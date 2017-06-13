@@ -26,14 +26,40 @@ function createDatabaseTable()
 //contact
 
 
-//eveniment
-function getEveniment($db, $id)
+
+
+//evenimente
+function getEvenimente($db)
+{
+    
+    $res = $db->query('SELECT * FROM eveniment');
+    $row=$res->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
+function getEvenimentId($db, $id)
 {
     $res = $db->query('SELECT * FROM eveniment WHERE id_eveniment='.$id);
     $row=$res->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
-
+function getEvenimentNume($db, $nume)
+{
+    $res = $db->query('SELECT * FROM eveniment WHERE nume_eveniment='.$nume);
+    $row=$res->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
+function getEvenimentData($db, $data)
+{
+    $res = $db->query('SELECT * FROM eveniment WHERE data='.$data);
+    $row=$res->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
+function getEvenimentCategorie($db, $categorie)
+{
+    $res = $db->query('SELECT * FROM eveniment WHERE categorie='.$categorie);
+    $row=$res->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
 function stergeEveniment($db,$id)
 {
     $queryString = 'DELETE FROM eveniment WHERE id_eveniment='.$id;
@@ -52,7 +78,14 @@ function modificaEveniment($db,$id,$nume,$data,$categorie,$locatie,$utilizator,$
     return $db->lastInsertId();
 }
 
-//utilizator
+function getEvenimenteUtilizator($db, $id)
+{
+	$res = $db->query('SELECT * FROM eveniment where id_utilizator='.$id);
+    $row=$res->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
+
+//utilizatori
 function adaugaUtilizator($db,$nume,$parola,$email)
 {
     $queryString = 'INSERT INTO `utilizatori` (nume_utilizator,parola,email) VALUES ("' .$nume. '","' .$parola. '","' .$email. '")';
@@ -73,6 +106,14 @@ function getUtilizator($db, $id)
     $row=$res->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
+function getUtilizatori($db)
+{
+    
+    $res = $db->query('SELECT * FROM utilizatori');
+    $row=$res->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
+
 
 function stergeUtilizator($db,$id)
 {
@@ -80,7 +121,22 @@ function stergeUtilizator($db,$id)
     $db->query($queryString);
 }
 
+function getUtilizatorEmail($db, $email)
+{
+    
+    $res = $db->query('SELECT * FROM utilizatori WHERE email='.$email);
+    $row=$res->fetch(PDO::FETCH_ASSOC);
+    return $row;
+}
 
+function getUtilizatorNume($db, $nume)
+{
+    $res = $db->query('SELECT * FROM utilizatori WHERE nume_utilizator='.$nume);
+    $row=$res->fetch(PDO::FETCH_ASSOC);
+    return $row;
+}
+
+//requesturi
 $settings =  [
     'settings' => [
         'displayErrorDetails' => true,
@@ -90,14 +146,44 @@ $app = new Slim\App($settings);
 //contact
 
 
-//eveniment
-$app->get('/eveniment/{id_eveniment}', function (Request $request, Response $response) {
+
+
+//evenimente
+$app->get('/evenimenteUtilizator/{id_utilizator}', function (Request $request, Response $response) {
+    $db = connect();
+	$id=$request->getAttribute('id_utilizator');
+    $rsp = getEvenimenteUtilizator($db,$id);
+    return $response->withJSON(array("evenimente" => $rsp));
+});
+$app->get('/evenimente', function (Request $request, Response $response) {
+    $db = connect();
+    $rsp = getEvenimente($db);
+    return $response->withJSON(array("evenimente" => $rsp));
+});
+$app->get('/evenimentId/{id_eveniment}', function (Request $request, Response $response) {
     $db = connect();
     $id = $request->getAttribute('id_eveniment');
-    $rsp = getEveniment($db, $id);
+    $rsp = getEvenimentId($db, $id);
     return $response->withJSON(array("eveniment" => $rsp));
 });
-
+$app->get('/evenimentNume/{nume_eveniment}', function (Request $request, Response $response) {
+    $db = connect();
+    $nume = $request->getAttribute('nume_eveniment');
+    $rsp = getEvenimentNume($db, $nume);
+    return $response->withJSON(array("eveniment" => $rsp));
+});
+$app->get('/evenimentData/{data}', function (Request $request, Response $response) {
+    $db = connect();
+    $data = $request->getAttribute('data');
+    $rsp = getEvenimentData($db, $data);
+    return $response->withJSON(array("eveniment" => $rsp));
+});
+$app->get('/evenimentCategorie/{categorie}', function (Request $request, Response $response) {
+    $db = connect();
+    $categorie = $request->getAttribute('categorie');
+    $rsp = getEvenimentCategorie($db, $categorie);
+    return $response->withJSON(array("eveniment" => $rsp));
+});
 $app->delete('/eveniment/{id_eveniment}', function (Request $request, Response $response) {
     $db = connect();
     $id = $request->getAttribute('id_eveniment');
@@ -106,7 +192,7 @@ $app->delete('/eveniment/{id_eveniment}', function (Request $request, Response $
 });
 $app->post('/adaugaEveniment/{nume_eveniment},{data},{categorie},{locatie},{utilizator},{detalii}', function (Request $request, Response $response) {
     $db = connect();
-    $nume = $request->getAttribute('nume_eveniment');
+	$nume = $request->getAttribute('nume_eveniment');
     $data = $request->getAttribute('data');
     $categorie = $request->getAttribute('categorie');
 	$locatie = $request->getAttribute('locatie');
@@ -117,7 +203,7 @@ $app->post('/adaugaEveniment/{nume_eveniment},{data},{categorie},{locatie},{util
 });
 $app->put('/modificaEveniment/{id},{nume_eveniment},{data},{categorie},{locatie},{utilizator},{detalii}', function (Request $request, Response $response) {
     $db = connect();
-    $nume = $request->getAttribute('nume_eveniemnt');
+    $nume = $request->getAttribute('nume_eveniment');
     $data = $request->getAttribute('data');
     $categorie = $request->getAttribute('categorie');
     $locatie = $request->getAttribute('locatie');
@@ -154,6 +240,27 @@ $app->get('/utilizator/{id_utilizator}', function (Request $request, Response $r
     $rsp = getUtilizator($db, $id);
     return $response->withJSON(array("utilizator" => $rsp));
 });
+
+$app->get('/utilizatori', function (Request $request, Response $response) {
+    $db = connect();
+    $rsp = getUtilizatori($db);
+    return $response->withJSON(array("utilizatori" => $rsp));
+});
+
+$app->get('/utilizatorNume/{nume_utilizator}', function (Request $request, Response $response) {
+    $db = connect();
+    $nume = $request->getAttribute('nume_utilizator');
+    $rsp = getUtilizatorNume($db, $nume);
+    return $response->withJSON(array("utilizator" => $rsp));
+});
+
+$app->get('/utilizatorEmail/{email}', function (Request $request, Response $response) {
+    $db = connect();
+    $email = $request->getAttribute('email');
+    $rsp = getUtilizatorEmail($db, $email);
+    return $response->withJSON(array("utilizator" => $rsp));
+});
+
 $app->delete('/utilizator/{id_utilizator}', function (Request $request, Response $response) {
     $db = connect();
     $id = $request->getAttribute('id_utilizator');
